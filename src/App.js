@@ -1,10 +1,17 @@
 import "./App.css";
-import { useState } from "react";
+// import { useState, useEffect } from "react";
+
+
+
+// 8a73a469
 
 const App = () => {
   // const name = "Andrew";
   // const isLoggedIn = true;
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+  // useEffect(() => {
+  //   setCounter(100);
+  // },[])
   return (
     <div className="App">
       {/* {isLoggedIn ? (
@@ -16,12 +23,17 @@ const App = () => {
       )} */}
 
 {/* simple counter */}
-      <button onClick={() => setCounter((prevCount) => prevCount - 1)}>-</button>
+      {/* <button onClick={() => setCounter((prevCount) => prevCount - 1)}>-</button>
       <h1 className="counter">{counter}</h1>
       <button onClick={() => setCounter((prevCount) => prevCount + 1)}>+</button>
       <div>
         
-      </div>
+      </div> */}
+      <h1>Hello There!</h1>
+
+
+
+
     </div>
   );
 };
