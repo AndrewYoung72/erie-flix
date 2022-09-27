@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  border: solid gray;
+}
+
+.counter {
+  color: blue;
+  padding: 10px;
 }
 
 .App-logo {
