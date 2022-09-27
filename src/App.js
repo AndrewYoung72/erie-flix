@@ -1,50 +1,54 @@
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
+import MovieCard from "./MovieCard";
+import SearchIcon from "./search.svg";
 import "./App.css";
-// import { useState, useEffect } from "react";
 
 const API_URL = "http://www.omdbapi.com?apikey=8a73a469";
 
-// 8a73a469
-
 const App = () => {
-  // const name = "Andrew";
-  // const isLoggedIn = true;
-  // const [counter, setCounter] = useState(0);
-  // useEffect(() => {
-  //   setCounter(100);
-  // },[])
+  const [searchTerm, setSearchTerm] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    searchMovies("Batman");
+  }, []);
 
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    console.log(data)
+
+    setMovies(data.Search);
   };
 
-  useEffect(() => {
-    searchMovies("John Wick");
-  }, [])
   return (
-    <div className="App">
-      {/* {isLoggedIn ? (
-        <>
-        <h1>Hello, {name}!</h1>
-        </>
+    <div className="app">
+      <h1>MovieLand</h1>
+
+      <div className="search">
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for movies"
+        />
+        <img
+          src={SearchIcon}
+          alt="search"
+          onClick={() => searchMovies(searchTerm)}
+        />
+      </div>
+
+      {movies?.length > 0 ? (
+        <div className="container">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} />
+          ))}
+        </div>
       ) : (
-        <h1>You must be logged in!</h1>
-      )} */}
-
-{/* simple counter */}
-      {/* <button onClick={() => setCounter((prevCount) => prevCount - 1)}>-</button>
-      <h1 className="counter">{counter}</h1>
-      <button onClick={() => setCounter((prevCount) => prevCount + 1)}>+</button>
-      <div>
-        
-      </div> */}
-      <h1>Hello There!</h1>
-
-
-
-
+        <div className="empty">
+          <h2>No movies found</h2>
+        </div>
+      )}
     </div>
   );
 };
