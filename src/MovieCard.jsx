@@ -1,5 +1,6 @@
 import React from 'react';
 
+// object destructuring of the props
 const MovieCard = ({ movie: { imdbID, Year, Poster, Title, Type } }) => {
   return (
     <div className="movie" key={imdbID}>
